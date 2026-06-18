@@ -1,0 +1,22 @@
+# Dependency directories
+node_modules/
+
+# Local configuration files
+config/db_local.php
+
+# User uploads and generated runtime assets
+uploads/*
+!uploads/.htaccess
+
+# Logging files
+logs/
+*.log
+
+# IDE specific settings
+.idea/
+.vscode/
+
+# Local operating system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini

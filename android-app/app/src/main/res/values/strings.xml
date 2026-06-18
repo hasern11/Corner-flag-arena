@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Corner Flag Arena</string>
+    <string name="error_offline_title">No Internet Connection</string>
+    <string name="error_offline_message">Please check your network settings and try again.</string>
+    <string name="btn_retry">Retry Connection</string>
+    <string name="loading_text">Loading Arena...</string>
+</resources>
