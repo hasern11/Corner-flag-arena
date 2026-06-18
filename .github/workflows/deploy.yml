@@ -1,0 +1,34 @@
+name: Deploy Corner Flag Arena
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out code
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Validate PHP Syntax (Linting)
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      
+      - name: Lint Code
+        run: |
+          find . -name "*.php" ! -path "./android-app/*" -print0 | xargs -0 -n 1 php -l
+
+      # Step 3: Deploy to Live VPS Server via SSH/Rsync
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_USER: ${{ secrets.SERVER_USER }}
+          TARGET: ${{ secrets.SERVER_TARGET_PATH }}
+          EXCLUDE: "/android-app/, /.git/, /.github/, /logs/, /uploads/"
